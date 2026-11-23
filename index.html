@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Finger+Paint:ital,wght@0,400&display=swap' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
-    <title>Sorteador de números</title>
+    <title>SorteAí!</title>
 </head>
 
 <body>
@@ -18,22 +18,38 @@
             <!-- Coluna 1: formulário -->
             <div class="container__informacoes">
                 <div class="container__texto">
-                    <h1>Sorteador<span class="container__texto-azul"> de números</span></h1>
+                    <h1>Sorte<span class="container__texto-Ai">Aí!</span></h1>
+
+                    <!-- Escolha do tipo de sorteio -->
+                    <div class="modo" role="group" aria-label="Tipo de sorteio">
+                        <button type="button" class="modo__btn modo__btn--ativo" data-modo="numeros" aria-pressed="true">🔢 Números</button>
+                        <button type="button" class="modo__btn" data-modo="nomes" aria-pressed="false">👤 Nomes</button>
+                    </div>
 
                     <div class="container__campo container__campo--quantidade">
-                        <label class="texto__paragrafo" for="quantidade">Quantidade de números</label>
+                        <label class="texto__paragrafo" for="quantidade">Quantidade sorteada</label>
                         <input class="container__input" id="quantidade" type="number" min="1" max="100" value="1">
-                        <input class="slider-quantidade" id="quantidadeSlider" type="range" min="1" max="100" value="1" aria-label="Quantidade de números">
+                        <input class="slider-quantidade" id="quantidadeSlider" type="range" min="1" max="100" value="1" aria-label="Quantidade sorteada">
                     </div>
 
-                    <div class="container__campo">
-                        <label class="texto__paragrafo" for="de">Do número</label>
-                        <input class="container__input" id="de" type="number" min="1" value="1">
+                    <!-- Campos do modo "Números" -->
+                    <div id="campos-numeros">
+                        <div class="container__campo">
+                            <label class="texto__paragrafo" for="de">Do número</label>
+                            <input class="container__input" id="de" type="number" min="1" value="1">
+                        </div>
+
+                        <div class="container__campo">
+                            <label class="texto__paragrafo" for="ate">Até o número</label>
+                            <input class="container__input" id="ate" type="number" min="1">
+                        </div>
                     </div>
 
-                    <div class="container__campo">
-                        <label class="texto__paragrafo" for="ate">Até o número</label>
-                        <input class="container__input" id="ate" type="number" min="1">
+                    <!-- Campo do modo "Nomes" -->
+                    <div class="container__campo container__campo--nomes" id="campo-nomes" hidden>
+                        <label class="texto__paragrafo" for="nomes">Nomes (um por linha)</label>
+                        <textarea class="container__textarea" id="nomes" rows="6" placeholder="Ana&#10;Bruno&#10;Carla"></textarea>
+                        <span class="contador-nomes" id="contador-nomes">0 nomes</span>
                     </div>
                 </div>
 
@@ -46,42 +62,39 @@
                     <label class="texto__paragrafo">Números sorteados: nenhum até agora</label>
                 </div>
             </div>
-                
+
             <!-- Coluna 2: painel de opções -->
             <div class="opcoes">
-            
-
                 <div class="linha">
                     <label class="switch">
                         <input type="checkbox" id="optNaoRepetir" checked>
                         <span class="slider"></span>
                     </label>
-                    <label class="texto" for="optNaoRepetir">Não repetir número</label>
+                    <label class="texto" for="optNaoRepetir">Não repetir número ou nome</label>
                 </div>
-                    <div class="linha">
-                        <label class="switch">
-                            <input type="checkbox" id="optOrdenar">
-                            <span class="slider"></span>
-                        </label>
-                        <label class="texto" for="optOrdenar">Ordenar números em ordem crescente</label>
-                    </div>
-                    <div class="linha">
-                        <label class="switch">
-                            <input type="checkbox" id="optSemLimite">
-                            <span class="slider"></span>
-                        </label>
-                        <label class="texto" for="optSemLimite">Desbloquear limite de 100 números</label>
-                    </div>
+
+                <div class="linha">
+                    <label class="switch">
+                        <input type="checkbox" id="optOrdenar">
+                        <span class="slider"></span>
+                    </label>
+                    <label class="texto" for="optOrdenar">Ordenar resultado (crescente ou A–Z)</label>
                 </div>
+
+                <div class="linha">
+                    <label class="switch">
+                        <input type="checkbox" id="optSemLimite">
+                        <span class="slider"></span>
+                    </label>
+                    <label class="texto" for="optSemLimite">Desbloquear limite de 100 sorteados</label>
+                </div>
+            </div>
 
             <!-- Coluna 3: imagem -->
             <img src="./img/casino.gif" alt="Uma roleta girando" class="container__imagem-pessoa" />
         </div>
     </div>
 
-
-    
-   
     <script src="app.js" defer></script>
 </body>
 
